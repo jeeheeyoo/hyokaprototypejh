@@ -68,6 +68,7 @@ const detailModal = document.getElementById('detailModal');
 const closeModalBtn = document.getElementById('closeModal');
 const modalBody = document.getElementById('modalBody');
 const exportBtn = document.getElementById('exportBtn');
+const linkBtn = document.getElementById('linkBtn');
 
 // Bulk Action Elements
 const selectAllCheckbox = document.getElementById('selectAll');
@@ -449,6 +450,11 @@ document.querySelectorAll('.results-table th.sortable').forEach(th => {
 // Export functionality (mock)
 exportBtn.addEventListener('click', () => {
     alert('エクスポート機能は実装中です。\n現在の表示データをCSVまたはExcel形式でダウンロードできます。');
+});
+
+// Link functionality (mock)
+linkBtn.addEventListener('click', () => {
+    alert('外部システムとの連携を開始します。\n人事データベースとの同期処理が実行されます。');
 });
 
 // Keyboard shortcuts
