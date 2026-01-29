@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インボックス — AI先行承認インボックス</title>
+    <meta name="description" content="360度評価インボックス：AIが99%自動処理、主に承認のみ">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="360.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-360">
+    <div class="app-layout layout-360">
+        <!-- SideNav 260px -->
+        <aside class="sidebar sidebar-360">
+            <div class="logo logo-360">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                評価
+            </div>
+            <nav class="nav-menu">
+                <a href="dashboard.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    ダッシュボード
+                </a>
+                <a href="index.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    評価一覧
+                </a>
+                <a href="360.html" class="nav-item active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-6l-2 3h-4l-2-3H2"></path>
+                    </svg>
+                    インボックス
+                </a>
+                <a href="360-recommend.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    AIおすすめ
+                </a>
+                <a href="#" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    設定
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 8v4"></path>
+                        <path d="M12 16h.01"></path>
+                    </svg>
+                    ヘルプ
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main: TopBar + Three-column -->
+        <main class="main-content main-360">
+            <!-- TopBar -->
+            <header class="topbar-360">
+                <h1 class="topbar-title">インボックス</h1>
+                <div class="topbar-actions">
+                    <div class="search-wrap-360">
+                        <svg class="search-icon-360" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="search" class="search-input-360" placeholder="検索..." aria-label="検索">
+                    </div>
+                    <div class="data-sync-indicator" title="データ同期済み">
+                        <span class="sync-dot"></span>
+                        <span class="sync-label">同期済み</span>
+                    </div>
+                    <button type="button" class="btn-icon-360" title="ヘルプ" aria-label="ヘルプ">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </button>
+                    <div class="user-avatar-360" title="ユーザー">
+                        <span>U</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Inbox: Tabs + List (single column) -->
+            <div class="main-area-360 main-area-360--single">
+                <div id="graphGeneratingOverlay" class="graph-generating-overlay hidden" aria-live="polite" aria-busy="true">
+                    <div class="graph-generating-content">
+                        <div class="graph-generating-spinner" aria-hidden="true"></div>
+                        <p class="graph-generating-text">AIグラフを生成中...</p>
+                    </div>
+                </div>
+                <div class="column-left-360">
+                    <div class="tabs-360">
+                        <button type="button" class="tab-360 active" data-tab="urgent">
+                            要確認
+                            <span class="tab-badge" id="countUrgent">1</span>
+                        </button>
+                        <button type="button" class="tab-360" data-tab="later">
+                            後で確認
+                            <span class="tab-badge" id="countLater">1</span>
+                        </button>
+                        <button type="button" class="tab-360" data-tab="archive">
+                            アーカイブ
+                            <span class="tab-badge" id="countArchive">0</span>
+                        </button>
+                        <button type="button" class="tab-360" data-tab="graph">
+                            グラフ
+                        </button>
+                    </div>
+                    <div class="left-panel-content">
+                        <ul class="task-list-360" id="taskList" role="list">
+                            <!-- Rendered by 360.js -->
+                        </ul>
+                        <div class="graph-tab-panel hidden graph-view-single" id="graphTabPanel">
+                            <p class="graph-tab-caption">1バブル＝1名。X軸＝成果、Y軸＝コンピテンシー／ポテンシャル、バブルサイズ＝影響度。部署でフィルター可能。</p>
+                            <div class="graph-view-switch" role="group" aria-label="グラフ表示">
+                                <span class="graph-view-switch-label">表示</span>
+                                <button type="button" class="graph-view-switch-btn active" data-view="single" aria-pressed="true">グラフ1個</button>
+                                <button type="button" class="graph-view-switch-btn" data-view="split" aria-pressed="false">4分割</button>
+                            </div>
+                            <div class="graph-view-single-wrap" id="graphViewSingleWrap">
+                                <div class="graph-single-filter">
+                                    <label class="graph-slot-label">部署</label>
+                                    <select id="graphSelectDeptSingle" class="graph-slot-select" aria-label="部署を選択">
+                                        <option value="">部署を選択</option>
+                                    </select>
+                                </div>
+                                <div class="graph-tab-chart-wrap graph-bubble-wrap graph-single-chart" id="graphTabChartSingle">
+                                    <svg class="graph-bubble-svg" id="graphBubbleSvgSingle" viewBox="0 0 320 280" aria-label="バブルチャート"></svg>
+                                    <div id="graphBubbleTooltipSingle" class="graph-bubble-tooltip" aria-hidden="true" role="tooltip"></div>
+                                    <div class="graph-bubble-legend" id="graphBubbleLegendSingle"></div>
+                                </div>
+                            </div>
+                            <div class="graph-view-split-wrap hidden" id="graphViewSplitWrap">
+                            <div class="graph-tab-charts-grid" id="graphChartsGrid">
+                                <div class="graph-chart-slot" data-slot="0">
+                                    <label class="graph-slot-label">部署1</label>
+                                    <select id="graphSelectDept0" class="graph-slot-select" aria-label="部署1を選択">
+                                        <option value="">部署を選択</option>
+                                    </select>
+                                    <div class="graph-tab-chart-wrap graph-bubble-wrap graph-slot-chart" id="graphTabChart0">
+                                        <svg class="graph-bubble-svg" id="graphBubbleSvg0" viewBox="0 0 320 280" aria-label="部署1バブルチャート"></svg>
+                                        <div id="graphBubbleTooltip0" class="graph-bubble-tooltip" aria-hidden="true" role="tooltip"></div>
+                                        <div class="graph-bubble-legend" id="graphBubbleLegend0"></div>
+                                    </div>
+                                </div>
+                                <div class="graph-chart-slot" data-slot="1">
+                                    <label class="graph-slot-label">部署2</label>
+                                    <select id="graphSelectDept1" class="graph-slot-select" aria-label="部署2を選択">
+                                        <option value="">部署を選択</option>
+                                    </select>
+                                    <div class="graph-tab-chart-wrap graph-bubble-wrap graph-slot-chart" id="graphTabChart1">
+                                        <svg class="graph-bubble-svg" id="graphBubbleSvg1" viewBox="0 0 320 280" aria-label="部署2バブルチャート"></svg>
+                                        <div id="graphBubbleTooltip1" class="graph-bubble-tooltip" aria-hidden="true" role="tooltip"></div>
+                                        <div class="graph-bubble-legend" id="graphBubbleLegend1"></div>
+                                    </div>
+                                </div>
+                                <div class="graph-chart-slot" data-slot="2">
+                                    <label class="graph-slot-label">部署3</label>
+                                    <select id="graphSelectDept2" class="graph-slot-select" aria-label="部署3を選択">
+                                        <option value="">部署を選択</option>
+                                    </select>
+                                    <div class="graph-tab-chart-wrap graph-bubble-wrap graph-slot-chart" id="graphTabChart2">
+                                        <svg class="graph-bubble-svg" id="graphBubbleSvg2" viewBox="0 0 320 280" aria-label="部署3バブルチャート"></svg>
+                                        <div id="graphBubbleTooltip2" class="graph-bubble-tooltip" aria-hidden="true" role="tooltip"></div>
+                                        <div class="graph-bubble-legend" id="graphBubbleLegend2"></div>
+                                    </div>
+                                </div>
+                                <div class="graph-chart-slot" data-slot="3">
+                                    <label class="graph-slot-label">部署4</label>
+                                    <select id="graphSelectDept3" class="graph-slot-select" aria-label="部署4を選択">
+                                        <option value="">部署を選択</option>
+                                    </select>
+                                    <div class="graph-tab-chart-wrap graph-bubble-wrap graph-slot-chart" id="graphTabChart3">
+                                        <svg class="graph-bubble-svg" id="graphBubbleSvg3" viewBox="0 0 320 280" aria-label="部署4バブルチャート"></svg>
+                                        <div id="graphBubbleTooltip3" class="graph-bubble-tooltip" aria-hidden="true" role="tooltip"></div>
+                                        <div class="graph-bubble-legend" id="graphBubbleLegend3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Task Dialog (large) -->
+    <div class="modal modal-360" id="taskDialog" role="dialog" aria-modal="true" aria-labelledby="taskDialogTitle">
+        <div class="modal-content modal-content-360 modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title" id="taskDialogTitle">—</h2>
+                <button type="button" class="modal-close" id="closeTaskDialog" aria-label="閉じる">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body modal-body-360">
+                <section class="dialog-section chart-panel-360">
+                    <div class="charts-row">
+                        <div class="chart-box">
+                            <h3 class="chart-caption">カテゴリ別点数</h3>
+                            <div class="chart-radar-wrap" id="dialogRadarChart"></div>
+                        </div>
+                        <div class="chart-box">
+                            <h3 class="chart-caption">KPI・プロジェクト完了数（AI取得）</h3>
+                            <div class="chart-bar-wrap" id="dialogBarChart"></div>
+                        </div>
+                    </div>
+                    <div class="overlay-control-row">
+                        <label class="checkbox-label"><input type="checkbox" id="overlayNormalize"> 正規化</label>
+                    </div>
+                </section>
+                <section class="dialog-section">
+                    <h3 class="section-label">AI要約</h3>
+                    <p class="ai-message-text" id="dialogAiMessage">—</p>
+                </section>
+                <section class="dialog-section accordion-360">
+                    <details class="accordion-item">
+                        <summary>カテゴリ別詳細</summary>
+                        <div class="accordion-body" id="dialogMetricsDetailed"></div>
+                    </details>
+                    <details class="accordion-item">
+                        <summary>同僚比較</summary>
+                        <div class="accordion-body" id="dialogPeerComparison"></div>
+                    </details>
+                </section>
+                <section class="dialog-section data-provenance-360">
+                    <h3 class="section-label">データ出典</h3>
+                    <dl class="key-value-list" id="dialogProvenance"></dl>
+                </section>
+            </div>
+            <div class="modal-footer modal-footer-360">
+                <div class="footer-left">
+                    <button type="button" class="btn-360 btn-primary-360" id="dialogApprove">承認 — アーカイブ</button>
+                    <button type="button" class="btn-360 btn-secondary-360" id="dialogApproveComment">承認＋メモ</button>
+                </div>
+                <div class="footer-center">
+                    <button type="button" class="btn-360 btn-ghost-360" id="dialogCompareToggle">複数人比較／オーバーレイ</button>
+                </div>
+                <div class="footer-right">
+                    <button type="button" class="btn-360 btn-ghost-360" id="dialogArchive">アーカイブ</button>
+                    <button type="button" class="btn-360 btn-ghost-360" id="dialogClose">閉じる</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Pane (overlay) -->
+    <div class="modal modal-360 comparison-pane-360 hidden" id="comparePane" role="dialog" aria-modal="true">
+        <div class="modal-content modal-content-360">
+            <div class="modal-header">
+                <h2 class="modal-title">グラフ比較</h2>
+                <button type="button" class="modal-close" id="closeComparePane" aria-label="閉じる">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="compare-controls">
+                    <label class="checkbox-label"><input type="checkbox" id="compareNormalize"> 正規化</label>
+                </div>
+                <div class="chart-radar-wrap compare-chart" id="compareRadarChart"></div>
+                <p class="chart-caption">複数人のカテゴリ点数オーバーレイ</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="snackbar" class="snackbar-360" aria-live="polite"></div>
+
+    <script src="360.js"></script>
+</body>
+</html>
