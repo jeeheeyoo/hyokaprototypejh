@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIおすすめメンバー — 評価</title>
+    <meta name="description" content="Slack/Teams/メールデータに基づく協働頻度の高いメンバーをおすすめ">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="360.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-360">
+    <div class="app-layout layout-360">
+        <!-- SideNav 260px -->
+        <aside class="sidebar sidebar-360">
+            <div class="logo logo-360">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                評価
+            </div>
+            <nav class="nav-menu">
+                <a href="dashboard.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    ダッシュボード
+                </a>
+                <a href="index.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    評価一覧
+                </a>
+                <a href="360.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-6l-2 3h-4l-2-3H2"></path>
+                    </svg>
+                    インボックス
+                </a>
+                <a href="360-recommend.html" class="nav-item active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    AIおすすめ
+                </a>
+                <a href="#" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    設定
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 8v4"></path>
+                        <path d="M12 16h.01"></path>
+                    </svg>
+                    ヘルプ
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content main-360">
+            <header class="topbar-360">
+                <h1 class="topbar-title">AIおすすめメンバー</h1>
+                <div class="topbar-actions">
+                    <div class="search-wrap-360">
+                        <svg class="search-icon-360" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="search" class="search-input-360" placeholder="検索..." aria-label="検索">
+                    </div>
+                    <div class="data-sync-indicator" title="データ同期済み">
+                        <span class="sync-dot"></span>
+                        <span class="sync-label">同期済み</span>
+                    </div>
+                    <button type="button" class="btn-icon-360" title="ヘルプ" aria-label="ヘルプ">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </button>
+                    <div class="user-avatar-360" title="ユーザー">
+                        <span>U</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="main-area-360 main-area-360--twocol">
+                <div class="recommend-left column-right-360">
+                    <div class="ai-panel-360">
+                        <p class="ai-panel-subtitle">Slack/Teams/メールデータに基づく協働頻度の高いメンバーをおすすめ</p>
+                        <div class="ai-sources-badges">
+                            <span class="source-badge">Slack</span>
+                            <span class="source-badge">Teams</span>
+                            <span class="source-badge">Gmail</span>
+                        </div>
+                        <ul class="ai-recommendations-list" id="aiRecommendationsList" role="list">
+                            <!-- Rendered by 360-recommend.js -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="recommend-right">
+                    <div class="radar-panel-360">
+                        <h2 class="radar-panel-title">評価点数比較（1～5点）</h2>
+                        <p class="radar-panel-subtitle">全被評価者の評価項目別点数をオーバーレイ表示します。</p>
+                        <div class="radar-average-block">
+                            <div class="radar-average-row">
+                                <span class="radar-average-label">平均点数</span>
+                                <span class="radar-average-value" id="radarAverageScore">—</span>
+                            </div>
+                            <p class="radar-ai-message" id="radarAiMessage" aria-live="polite"></p>
+                        </div>
+                        <div class="radar-chart-wrap" id="radarChartWrap">
+                            <svg class="radar-chart-svg" id="radarChartSvg" viewBox="0 0 400 400" aria-label="レーダーチャート"></svg>
+                        </div>
+                        <div class="radar-legend" id="radarLegend"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Fixed chat box (AI agent) -->
+    <div class="chat-box-fixed" id="chatBoxFixed">
+        <label for="chatInput" class="chat-box-label">AIエージェント</label>
+        <div class="chat-box-inner">
+            <input type="text" id="chatInput" class="chat-input-360" placeholder="質問や指示を入力..." maxlength="500" aria-label="チャット入力">
+            <button type="button" class="btn-360 btn-primary-360 chat-send-btn" id="chatSendBtn" aria-label="送信">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                送信
+            </button>
+        </div>
+    </div>
+
+    <!-- チャット履歴ドロワー（右） -->
+    <div class="chat-drawer-backdrop" id="chatDrawerBackdrop" aria-hidden="true"></div>
+    <aside class="chat-drawer" id="chatDrawer" role="dialog" aria-label="チャット履歴">
+        <div class="chat-drawer-header">
+            <h2 class="chat-drawer-title">チャット履歴</h2>
+            <button type="button" class="chat-drawer-close" id="chatDrawerClose" aria-label="閉じる">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="chat-drawer-body">
+            <ul class="chat-messages-list" id="chatMessagesList" role="list">
+                <!-- Chat messages rendered by 360-recommend.js -->
+            </ul>
+        </div>
+        <div class="chat-drawer-footer">
+            <label for="chatDrawerInput" class="chat-box-label">AIエージェント</label>
+            <div class="chat-drawer-inner">
+                <input type="text" id="chatDrawerInput" class="chat-input-360" placeholder="質問や指示を入力..." maxlength="500" aria-label="チャット入力">
+                <button type="button" class="btn-360 btn-primary-360 chat-send-btn" id="chatDrawerSendBtn" aria-label="送信">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    送信
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <script src="360-recommend.js"></script>
+</body>
+</html>
