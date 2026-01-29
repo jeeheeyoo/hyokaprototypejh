@@ -125,27 +125,45 @@ const getStatusClass = (status) => {
     return statusMap[status] || 'status-incomplete';
 };
 
+const showSnackbar = (message, duration = 4000) => {
+    const snackbar = document.getElementById('snackbar');
+    if (!snackbar) return;
+
+    snackbar.innerHTML = message;
+    snackbar.className = 'show';
+
+    setTimeout(() => {
+        snackbar.className = snackbar.className.replace('show', '');
+    }, duration);
+};
+
 // ==========================================
 // Data Filtering and Sorting
 // ==========================================
 const applyFilters = () => {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    const statusValue = statusFilter.value;
-    const periodValue = periodFilter.value;
-    const departmentValue = departmentFilter.value;
+    // If we have filters, apply them
+    if (searchInput && statusFilter) {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const statusValue = statusFilter.value;
+        const periodValue = periodFilter.value;
+        const departmentValue = departmentFilter.value;
 
-    filteredData = allData.filter(item => {
-        const matchesSearch = !searchTerm ||
-            item.name.toLowerCase().includes(searchTerm) ||
-            item.department.toLowerCase().includes(searchTerm) ||
-            item.employeeId.toLowerCase().includes(searchTerm);
+        filteredData = allData.filter(item => {
+            const matchesSearch = !searchTerm ||
+                item.name.toLowerCase().includes(searchTerm) ||
+                item.department.toLowerCase().includes(searchTerm) ||
+                item.employeeId.toLowerCase().includes(searchTerm);
 
-        const matchesStatus = !statusValue || item.status === statusValue;
-        const matchesPeriod = !periodValue || item.period === periodValue;
-        const matchesDepartment = !departmentValue || item.department === departmentValue;
+            const matchesStatus = !statusValue || item.status === statusValue;
+            const matchesPeriod = !periodValue || item.period === periodValue;
+            const matchesDepartment = !departmentValue || item.department === departmentValue;
 
-        return matchesSearch && matchesStatus && matchesPeriod && matchesDepartment;
-    });
+            return matchesSearch && matchesStatus && matchesPeriod && matchesDepartment;
+        });
+    } else {
+        // No filters available, show all data
+        filteredData = [...allData];
+    }
 
     // Apply current sort if any
     if (currentSort.field) {
@@ -154,8 +172,8 @@ const applyFilters = () => {
 
     currentPage = 1;
     updateStats();
-    renderTable();
-    updatePagination();
+    if (tableBody) renderTable();
+    if (pageInfo) updatePagination();
 };
 
 const applySorting = (field, direction) => {
@@ -183,10 +201,10 @@ const applySorting = (field, direction) => {
 };
 
 const resetFilters = () => {
-    searchInput.value = '';
-    statusFilter.value = '';
-    periodFilter.value = '';
-    departmentFilter.value = '';
+    if (searchInput) searchInput.value = '';
+    if (statusFilter) statusFilter.value = '';
+    if (periodFilter) periodFilter.value = '';
+    if (departmentFilter) departmentFilter.value = '';
     currentSort = { field: null, direction: 'asc' };
 
     // Reset sort indicators
@@ -280,18 +298,19 @@ const goToPage = (page) => {
 // Statistics
 // ==========================================
 const updateStats = () => {
-    totalCount.textContent = filteredData.length;
+    // Only update stats if elements exist
+    if (totalCount) totalCount.textContent = filteredData.length;
 
     const complete = filteredData.filter(item => item.status === '完了').length;
-    completeCount.textContent = complete;
+    if (completeCount) completeCount.textContent = complete;
 
     const review = filteredData.filter(item => item.status === 'レビュー中').length;
-    reviewCount.textContent = review;
+    if (reviewCount) reviewCount.textContent = review;
 
     const avgScore = filteredData.length > 0
         ? (filteredData.reduce((sum, item) => sum + item.score, 0) / filteredData.length).toFixed(1)
         : '0.0';
-    averageScore.textContent = avgScore;
+    if (averageScore) averageScore.textContent = avgScore;
 };
 
 // ==========================================
@@ -402,17 +421,17 @@ const closeModal = () => {
 // ==========================================
 // Event Listeners
 // ==========================================
-searchInput.addEventListener('input', debounce(applyFilters, 300));
-statusFilter.addEventListener('change', applyFilters);
-periodFilter.addEventListener('change', applyFilters);
-departmentFilter.addEventListener('change', applyFilters);
-resetFiltersBtn.addEventListener('click', resetFilters);
+if (searchInput) searchInput.addEventListener('input', debounce(applyFilters, 300));
+if (statusFilter) statusFilter.addEventListener('change', applyFilters);
+if (periodFilter) periodFilter.addEventListener('change', applyFilters);
+if (departmentFilter) departmentFilter.addEventListener('change', applyFilters);
+if (resetFiltersBtn) resetFiltersBtn.addEventListener('click', resetFilters);
 
-prevPageBtn.addEventListener('click', () => goToPage(currentPage - 1));
-nextPageBtn.addEventListener('click', () => goToPage(currentPage + 1));
+if (prevPageBtn) prevPageBtn.addEventListener('click', () => goToPage(currentPage - 1));
+if (nextPageBtn) nextPageBtn.addEventListener('click', () => goToPage(currentPage + 1));
 
-closeModalBtn.addEventListener('click', closeModal);
-detailModal.addEventListener('click', (e) => {
+if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+if (detailModal) detailModal.addEventListener('click', (e) => {
     if (e.target === detailModal) {
         closeModal();
     }
@@ -448,13 +467,13 @@ document.querySelectorAll('.results-table th.sortable').forEach(th => {
 });
 
 // Export functionality (mock)
-exportBtn.addEventListener('click', () => {
+if (exportBtn) exportBtn.addEventListener('click', () => {
     alert('エクスポート機能は実装中です。\n現在の表示データをCSVまたはExcel形式でダウンロードできます。');
 });
 
 // Link functionality (mock)
-linkBtn.addEventListener('click', () => {
-    alert('外部システムとの連携を開始します。\n人事データベースとの同期処理が実行されます。');
+if (linkBtn) linkBtn.addEventListener('click', () => {
+    // Alert removed
 });
 
 // Keyboard shortcuts
@@ -568,29 +587,29 @@ const closeFeedbackModal = () => {
 };
 
 // Update slider value display
-satisfactionSlider.addEventListener('input', (e) => {
+if (satisfactionSlider) satisfactionSlider.addEventListener('input', (e) => {
     const value = e.target.value;
     scoreValueDisplay.textContent = value;
     feedbackFlow.data.score = parseInt(value);
 });
 
 // Cancel feedback
-cancelFeedbackBtn.addEventListener('click', () => {
+if (cancelFeedbackBtn) cancelFeedbackBtn.addEventListener('click', () => {
     showFeedbackScreen('cancelConfirmScreen');
 });
 
 // Back to input from cancel confirm
-backToInputBtn.addEventListener('click', () => {
+if (backToInputBtn) backToInputBtn.addEventListener('click', () => {
     showFeedbackScreen('evaluationInputScreen');
 });
 
 // Confirm cancel
-confirmCancelBtn.addEventListener('click', () => {
+if (confirmCancelBtn) confirmCancelBtn.addEventListener('click', () => {
     closeFeedbackModal();
 });
 
 // Submit feedback
-submitFeedbackBtn.addEventListener('click', () => {
+if (submitFeedbackBtn) submitFeedbackBtn.addEventListener('click', () => {
     feedbackFlow.data.comment = feedbackComment.value;
 
     // Conditional logic: score >= 90
@@ -604,51 +623,53 @@ submitFeedbackBtn.addEventListener('click', () => {
 });
 
 // To next action
-toNextActionBtn.addEventListener('click', () => {
+if (toNextActionBtn) toNextActionBtn.addEventListener('click', () => {
     showFeedbackScreen('nextActionScreen');
 });
 
 // Request revision (disagreement flow)
-requestRevisionBtn.addEventListener('click', () => {
+if (requestRevisionBtn) requestRevisionBtn.addEventListener('click', () => {
     // Reset and go back to input
     showFeedbackScreen('evaluationInputScreen');
 });
 
 // End process
-endProcessBtn.addEventListener('click', () => {
+if (endProcessBtn) endProcessBtn.addEventListener('click', () => {
     closeFeedbackModal();
     console.log('✅ 評価プロセス終了');
 });
 
 // View history
-viewHistoryBtn.addEventListener('click', () => {
+if (viewHistoryBtn) viewHistoryBtn.addEventListener('click', () => {
     // Generate and display history
     const history = generateEvaluationHistory();
     const historyTableBody = document.getElementById('historyTableBody');
 
-    historyTableBody.innerHTML = history.map(item => `
-        <tr>
-            <td>${item.period}</td>
-            <td><span class="history-score">${item.score}</span></td>
-            <td>${item.comment}</td>
-        </tr>
-    `).join('');
+    if (historyTableBody) {
+        historyTableBody.innerHTML = history.map(item => `
+            <tr>
+                <td>${item.period}</td>
+                <td><span class="history-score">${item.score}</span></td>
+                <td>${item.comment}</td>
+            </tr>
+        `).join('');
+    }
 
     showFeedbackScreen('historyScreen');
 });
 
 // Close history
-closeHistoryBtn.addEventListener('click', () => {
+if (closeHistoryBtn) closeHistoryBtn.addEventListener('click', () => {
     closeFeedbackModal();
 });
 
 // Close feedback modal button
-closeFeedbackModalBtn.addEventListener('click', () => {
+if (closeFeedbackModalBtn) closeFeedbackModalBtn.addEventListener('click', () => {
     closeFeedbackModal();
 });
 
 // Close modal on outside click
-feedbackModal.addEventListener('click', (e) => {
+if (feedbackModal) feedbackModal.addEventListener('click', (e) => {
     if (e.target === feedbackModal) {
         closeFeedbackModal();
     }
@@ -761,12 +782,12 @@ const closeBulkModal = () => {
     document.body.style.overflow = '';
 };
 
-bulkFeedbackBtn.addEventListener('click', openBulkModal);
-closeBulkModalBtn.addEventListener('click', closeBulkModal);
-cancelBulkBtn.addEventListener('click', closeBulkModal);
+if (bulkFeedbackBtn) bulkFeedbackBtn.addEventListener('click', openBulkModal);
+if (closeBulkModalBtn) closeBulkModalBtn.addEventListener('click', closeBulkModal);
+if (cancelBulkBtn) cancelBulkBtn.addEventListener('click', closeBulkModal);
 
 // Slider update
-bulkSatisfactionSlider.addEventListener('input', (e) => {
+if (bulkSatisfactionSlider) bulkSatisfactionSlider.addEventListener('input', (e) => {
     bulkScoreValueDisplay.textContent = e.target.value;
 });
 
@@ -781,7 +802,7 @@ const simulateFeedbackSubmission = (id, score, comment) => {
 };
 
 // Bulk submit
-submitBulkBtn.addEventListener('click', async () => {
+if (submitBulkBtn) submitBulkBtn.addEventListener('click', async () => {
     const score = parseInt(bulkSatisfactionSlider.value);
     const comment = bulkFeedbackComment.value;
     const selectedIds = Array.from(bulkSelection.selectedIds);
@@ -818,11 +839,151 @@ submitBulkBtn.addEventListener('click', async () => {
 });
 
 // Click outside to close bulk modal
-bulkFeedbackModal.addEventListener('click', (e) => {
+if (bulkFeedbackModal) bulkFeedbackModal.addEventListener('click', (e) => {
     if (e.target === bulkFeedbackModal && !submitBulkBtn.disabled) {
         closeBulkModal();
     }
 });
+
+// ==========================================
+// Link Settings Wizard Logic (확정 메시지 → 처리 과정 → 확인)
+// ==========================================
+const finalizeBtn = document.getElementById('finalizeBtn');
+const linkWizardModal = document.getElementById('linkWizardModal');
+const closeWizardBtn = document.getElementById('closeWizardBtn');
+const cancelWizardBtn = document.getElementById('cancelWizardBtn');
+const cancelWizardBtnConfirm = document.getElementById('cancelWizardBtnConfirm');
+const completeWizardBtn = document.getElementById('completeWizardBtn');
+const wizardModalTitle = document.getElementById('wizardModalTitle');
+
+const FINALIZE_AUTO_NEXT_DELAY_MS = 2000;
+let finalizeAutoNextTimeoutId = null;
+
+const finalizeMessageScreen = document.getElementById('finalizeMessageScreen');
+const finalizeProgressScreen = document.getElementById('finalizeProgressScreen');
+const finalizeConfirmScreen = document.getElementById('finalizeConfirmScreen');
+const finalizeFooterScreen1 = document.getElementById('finalizeFooterScreen1');
+const finalizeFooterScreen2 = document.getElementById('finalizeFooterScreen2');
+const finalizeFooterScreen3 = document.getElementById('finalizeFooterScreen3');
+
+const cancelWizardBtnProgress = document.getElementById('cancelWizardBtnProgress');
+
+const PROGRESS_STEP_COUNT = 5;
+const PROGRESS_STEP_DWELL_MS = 800;
+let currentProgressStep = 1;
+let progressAutoNextTimeoutId = null;
+
+const showFinalizeScreen = (screenId) => {
+    [finalizeMessageScreen, finalizeProgressScreen, finalizeConfirmScreen].forEach(el => {
+        if (el) el.classList.toggle('active', el.id === screenId);
+    });
+    if (finalizeFooterScreen1) finalizeFooterScreen1.classList.toggle('hidden', screenId !== 'finalizeMessageScreen');
+    if (finalizeFooterScreen2) finalizeFooterScreen2.classList.toggle('hidden', screenId !== 'finalizeProgressScreen');
+    if (finalizeFooterScreen3) finalizeFooterScreen3.classList.toggle('hidden', screenId !== 'finalizeConfirmScreen');
+    if (wizardModalTitle) {
+        if (screenId === 'finalizeMessageScreen') wizardModalTitle.textContent = '評価結果の確定';
+        else if (screenId === 'finalizeProgressScreen') wizardModalTitle.textContent = '処理を実行しています';
+        else wizardModalTitle.textContent = '連携内容の確認';
+    }
+    if (screenId === 'finalizeProgressScreen') {
+        currentProgressStep = 1;
+        showProgressStep(1);
+        runProgressAutoAdvance();
+    }
+};
+
+const showProgressStep = (stepIndex) => {
+    currentProgressStep = stepIndex;
+    document.querySelectorAll('.progress-step-page').forEach(page => {
+        const pageNum = parseInt(page.dataset.page, 10);
+        page.classList.toggle('active', pageNum === stepIndex);
+    });
+};
+
+const runProgressAutoAdvance = () => {
+    if (progressAutoNextTimeoutId) {
+        clearTimeout(progressAutoNextTimeoutId);
+        progressAutoNextTimeoutId = null;
+    }
+    const runNext = (step) => {
+        if (step > PROGRESS_STEP_COUNT) {
+            progressAutoNextTimeoutId = null;
+            showFinalizeScreen('finalizeConfirmScreen');
+            return;
+        }
+        showProgressStep(step);
+        progressAutoNextTimeoutId = setTimeout(() => {
+            runNext(step + 1);
+        }, PROGRESS_STEP_DWELL_MS);
+    };
+    runNext(1);
+};
+
+const openWizard = () => {
+    if (!linkWizardModal) return;
+    if (finalizeAutoNextTimeoutId) {
+        clearTimeout(finalizeAutoNextTimeoutId);
+        finalizeAutoNextTimeoutId = null;
+    }
+    showFinalizeScreen('finalizeMessageScreen');
+    linkWizardModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    finalizeAutoNextTimeoutId = setTimeout(() => {
+        finalizeAutoNextTimeoutId = null;
+        showFinalizeScreen('finalizeProgressScreen');
+    }, FINALIZE_AUTO_NEXT_DELAY_MS);
+};
+
+const closeWizard = () => {
+    if (!linkWizardModal) return;
+    if (finalizeAutoNextTimeoutId) {
+        clearTimeout(finalizeAutoNextTimeoutId);
+        finalizeAutoNextTimeoutId = null;
+    }
+    if (progressAutoNextTimeoutId) {
+        clearTimeout(progressAutoNextTimeoutId);
+        progressAutoNextTimeoutId = null;
+    }
+    linkWizardModal.classList.remove('active');
+    document.body.style.overflow = '';
+};
+
+if (finalizeBtn) {
+    finalizeBtn.addEventListener('click', () => {
+        openWizard();
+    });
+}
+
+if (closeWizardBtn) closeWizardBtn.addEventListener('click', closeWizard);
+if (cancelWizardBtn) cancelWizardBtn.addEventListener('click', closeWizard);
+if (cancelWizardBtnConfirm) cancelWizardBtnConfirm.addEventListener('click', closeWizard);
+if (cancelWizardBtnProgress) cancelWizardBtnProgress.addEventListener('click', closeWizard);
+
+if (completeWizardBtn) {
+    completeWizardBtn.addEventListener('click', () => {
+        closeWizard();
+        const btn = document.getElementById('finalizeBtn');
+        const linkedStatusHeader = document.getElementById('linkedStatusHeader');
+        if (btn && linkedStatusHeader) {
+            btn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                確定済み
+            `;
+            btn.style.opacity = '0.7';
+            btn.disabled = true;
+            btn.classList.add('hidden');
+            linkedStatusHeader.classList.remove('hidden');
+        }
+    });
+}
+
+if (linkWizardModal) {
+    linkWizardModal.addEventListener('click', (e) => {
+        if (e.target === linkWizardModal) closeWizard();
+    });
+}
 
 // Make startFeedbackFlow available globally
 window.startFeedbackFlow = startFeedbackFlow;

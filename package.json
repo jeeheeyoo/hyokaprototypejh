@@ -1,0 +1,13 @@
+{
+  "name": "prototype-antigravity",
+  "version": "1.0.0",
+  "description": "HR SaaS 평가 모듈 프로토타입",
+  "private": true,
+  "scripts": {
+    "start": "http-server evaluation-module -p 8000 -c-1",
+    "dev": "http-server evaluation-module -p 8000 -c-1 -o"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
